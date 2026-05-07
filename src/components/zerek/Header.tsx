@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 
-const WHATSAPP = "https://wa.me/5547999942227";
+const WHATSAPP = "https://wa.me/5547999942227?text=Oi%21%20Acessei%20o%20site%20da%20Zerek.IA%20e%20desejo%20algumas%20informa%C3%A7%C3%B5es";
 
 const topics = [
   { label: "Agentes de IA", id: "solucoes" },

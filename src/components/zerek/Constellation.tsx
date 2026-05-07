@@ -80,30 +80,6 @@ export function Constellation() {
         ctx.fill();
       }
 
-      // lines
-      for (let i = 0; i < points.length; i++) {
-        for (let j = i + 1; j < points.length; j++) {
-          const a = points[i], b = points[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d = Math.hypot(dx, dy);
-          if (d < maxDist) {
-            const alpha = (1 - d / maxDist) * 0.18;
-            ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-      // dots
-      for (const p of points) {
-        ctx.fillStyle = "rgba(148, 163, 184, 0.55)";
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
-        ctx.fill();
-      }
       raf = requestAnimationFrame(draw);
     };
 

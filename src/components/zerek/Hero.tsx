@@ -3,7 +3,7 @@ import { Constellation } from "./Constellation";
 import { SplineRobot } from "./SplineRobot";
 import { Reveal } from "./Reveal";
 
-const WHATSAPP = "https://wa.me/5547999942227";
+const WHATSAPP = "https://wa.me/5547999942227?text=Oi%21%20Acessei%20o%20site%20da%20Zerek.IA%20e%20desejo%20algumas%20informa%C3%A7%C3%B5es";
 
 export function Hero() {
   return (
@@ -78,7 +78,7 @@ export function Hero() {
 
           <Reveal delay={160}>
             <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-md leading-relaxed">
-              Agentes de IA, site e CRM sob medida pro seu negócio. Captação, recuperação de vendas e pós-venda — tudo integrado.
+              Agentes de IA, Sites e CRM sob medida pro seu negócio. Captação, recuperação de vendas e pós-venda — tudo integrado.
             </p>
           </Reveal>
 
