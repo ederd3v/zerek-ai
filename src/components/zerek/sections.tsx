@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 
-const WHATSAPP = "https://wa.me/554799994227";
+const WHATSAPP = "https://wa.me/5547999942227";
 
 /* ---------- Soluções ---------- */
 

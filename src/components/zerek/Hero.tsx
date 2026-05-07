@@ -3,7 +3,7 @@ import { Constellation } from "./Constellation";
 import { SplineRobot } from "./SplineRobot";
 import { Reveal } from "./Reveal";
 
-const WHATSAPP = "https://wa.me/554799994227";
+const WHATSAPP = "https://wa.me/5547999942227";
 
 export function Hero() {
   return (
