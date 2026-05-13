@@ -3,7 +3,7 @@ import { Constellation } from "./Constellation";
 import { SplineRobot } from "./SplineRobot";
 import { Reveal } from "./Reveal";
 
-const WHATSAPP = "https://wa.me/5547996904704";
+const WHATSAPP = "https://api.whatsapp.com/send?phone=5547996904704&text=Oi%21+Acessei+o+site+da+Zerek.IA+e+desejo+algumas+informa%C3%A7%C3%B5es";
 
 export function Hero() {
   return (
