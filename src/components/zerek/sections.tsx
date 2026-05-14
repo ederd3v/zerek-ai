@@ -15,7 +15,7 @@ import {
   LayoutDashboard,
   Globe,
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 
 const WHATSAPP = "https://api.whatsapp.com/send?phone=5547996904704&text=Oi%21+Acessei+o+site+da+Zerek.IA+e+desejo+algumas+informa%C3%A7%C3%B5es";
@@ -57,29 +57,26 @@ const solutions = [
 
 export function SolutionsSection() {
   return (
-    <section id="solucoes" className="relative py-28 sm:py-36 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="container-zerek relative">
+    <section id="solucoes" className="relative py-28 sm:py-36">
+      <div className="container-zerek">
         <Reveal>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-glow mb-4">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow mb-4">
               Soluções
             </p>
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-tight">
-              Automação com <span className="text-gradient">IA</span>, do começo ao fim
+            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">
+              Soluções de automação com <span className="text-primary-glow">IA</span>, do começo ao fim
             </h2>
-            <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
+            <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
               Cada parte da sua empresa rodando no automático, conectada e inteligente.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {solutions.map((s, i) => (
-            <Reveal key={s.title} delay={i * 100}>
-              <TiltCard>
-                <SolutionCard {...s} />
-              </TiltCard>
+            <Reveal key={s.title} delay={i * 80}>
+              <SolutionCard {...s} />
             </Reveal>
           ))}
         </div>
@@ -88,54 +85,30 @@ export function SolutionsSection() {
   );
 }
 
-function TiltCard({ children }: { children: React.ReactNode }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [transform, setTransform] = useState("perspective(1000px) rotateX(0deg) rotateY(0deg)");
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-    const rotateX = (y - 0.5) * -12;
-    const rotateY = (x - 0.5) * 12;
-    setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`);
-  };
-
-  const handleMouseLeave = () => {
-    setTransform("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="transition-transform duration-200 ease-out"
-      style={{ transform, transformStyle: "preserve-3d" }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SolutionCard({ icon: Icon, title, desc }: { icon: any; title: string; desc: string }) {
+function SolutionCard({
+  icon: Icon,
+  title,
+  desc,
+}: {
+  icon: any;
+  title: string;
+  desc: string;
+}) {
   return (
     <a
       href={WHATSAPP}
       target="_blank"
       rel="noreferrer"
-      className="group card-shine relative block rounded-2xl border border-border/60 bg-surface/70 backdrop-blur-xl p-8 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_0_1px_oklch(0.62_0.2_260/0.5),0_20px_60px_oklch(0.62_0.2_260/0.2)] hover:-translate-y-1"
+      className="group relative block rounded-xl border border-border bg-surface p-8 transition-all duration-300 hover:border-primary/60 hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_oklch(0.62_0.2_260/0.6),0_8px_40px_oklch(0.62_0.2_260/0.18)]"
     >
-      <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 ring-1 ring-primary/30 text-primary-glow group-hover:ring-primary/60 transition-all duration-300 group-hover:scale-110">
+      <div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/30 text-primary-glow group-hover:bg-primary/20 transition-colors">
         <Icon className="h-5 w-5" strokeWidth={1.6} />
       </div>
-      <h3 className="text-xl font-semibold tracking-tight group-hover:text-primary-glow transition-colors duration-300">{title}</h3>
-      <p className="mt-3 text-muted-foreground leading-relaxed text-[15px]">{desc}</p>
-      <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-glow">
+      <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
+      <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
+      <div className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary-glow">
         Saiba mais
-        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </div>
     </a>
   );
@@ -154,37 +127,38 @@ const audiences = [
 
 export function AudienceSection() {
   return (
-    <section id="para-quem" className="relative py-28 sm:py-36 glass-strong border-y border-border/50">
+    <section id="para-quem" className="relative py-28 sm:py-36 bg-surface/40 border-y border-border">
       <div className="container-zerek">
         <Reveal>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-glow mb-4">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow mb-4">
               Para quem é
             </p>
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">
               Automação para empresas que querem escalar
             </h2>
             <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-              Atendemos qualquer negócio que tenha processos repetitivos e queira ganhar tempo, vender mais e atender melhor.
+              Atendemos qualquer negócio que tenha processos repetitivos e queira ganhar tempo,
+              vender mais e atender melhor.
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-3 gap-4 stagger-children">
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-3 gap-4">
           {audiences.map((a, i) => (
-            <Reveal key={a.label} delay={i * 80}>
-              <div className="group flex items-center gap-4 rounded-xl border border-border/50 bg-background/40 backdrop-blur-sm p-5 transition-all duration-300 hover:border-primary/50 hover:bg-surface/80 hover:shadow-[0_0_30px_oklch(0.62_0.2_260/0.12)] cursor-default">
-                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 text-primary-glow ring-1 ring-primary/20 group-hover:ring-primary/50 transition-all duration-300 group-hover:scale-110">
+            <Reveal key={a.label} delay={i * 60}>
+              <div className="flex items-center gap-4 rounded-xl border border-border bg-background/60 p-5 transition-all duration-300 hover:border-primary/50 hover:bg-surface">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary-glow ring-1 ring-primary/20">
                   <a.icon className="h-5 w-5" strokeWidth={1.6} />
                 </div>
-                <span className="text-sm sm:text-base font-medium group-hover:text-foreground transition-colors">{a.label}</span>
+                <span className="text-sm sm:text-base font-medium">{a.label}</span>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={200}>
-          <p className="mt-10 text-muted-foreground text-center text-sm">
+          <p className="mt-10 text-muted-foreground text-center">
             A Zerek.ai se adapta ao seu negócio, não o contrário.
           </p>
         </Reveal>
@@ -215,32 +189,32 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="relative py-28 sm:py-36 overflow-hidden">
+    <section id="como-funciona" className="relative py-28 sm:py-36">
       <div className="container-zerek">
         <Reveal>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-glow mb-4">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow mb-4">
               Como funciona
             </p>
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">
               Do diagnóstico ao resultado em semanas
             </h2>
           </div>
         </Reveal>
 
-        <div className="relative mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-[2px]" aria-hidden>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-          </div>
-
+        <div className="relative mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* connecting line */}
+          <div
+            className="hidden md:block absolute top-7 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+            aria-hidden
+          />
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 150}>
-              <div className="relative text-center md:text-left group">
-                <div className="relative mx-auto md:mx-0 flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/40 bg-gradient-to-br from-surface to-background text-lg font-bold text-primary-glow shadow-[0_0_40px_oklch(0.62_0.2_260/0.3)] group-hover:shadow-[0_0_60px_oklch(0.62_0.2_260/0.5)] transition-shadow duration-500">
+            <Reveal key={s.n} delay={i * 120}>
+              <div className="relative">
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-background text-sm font-semibold text-primary-glow shadow-[0_0_30px_oklch(0.62_0.2_260/0.25)]">
                   {s.n}
-                  <div className="absolute inset-0 rounded-2xl bg-primary/10 blur-md -z-10 group-hover:bg-primary/20 transition-colors" />
                 </div>
-                <h3 className="mt-8 text-xl font-semibold tracking-tight group-hover:text-primary-glow transition-colors">{s.title}</h3>
+                <h3 className="mt-6 text-xl font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-3 text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             </Reveal>
@@ -291,37 +265,42 @@ export function FaqSection() {
       <div className="container-zerek max-w-3xl">
         <Reveal>
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-glow mb-4">FAQ</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-tight leading-tight">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow mb-4">
+              FAQ
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight">
               Perguntas frequentes
             </h2>
           </div>
         </Reveal>
 
-        <div className="mt-14 divide-y divide-border/60 border-y border-border/60">
+        <div className="mt-14 divide-y divide-border border-y border-border">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <Reveal key={f.q} delay={i * 50}>
-                <div className="group">
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between gap-6 py-6 text-left"
-                    aria-expanded={isOpen}
-                  >
-                    <span className={`text-base sm:text-lg font-medium transition-colors duration-300 ${isOpen ? "text-primary-glow" : "group-hover:text-primary-glow"}`}>
-                      {f.q}
-                    </span>
-                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-primary/50 bg-primary/10 rotate-180" : "border-border/60 group-hover:border-primary/40"}`}>
-                      <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                  </button>
-                  <div
-                    className="overflow-hidden transition-all duration-500 ease-out"
-                    style={{ maxHeight: isOpen ? 400 : 0, opacity: isOpen ? 1 : 0 }}
-                  >
-                    <p className="pb-6 pr-12 text-muted-foreground leading-relaxed text-[15px]">{f.a}</p>
-                  </div>
+              <Reveal key={f.q} delay={i * 40}>
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between gap-6 py-6 text-left group"
+                  aria-expanded={isOpen}
+                >
+                  <span className="text-base sm:text-lg font-medium group-hover:text-primary-glow transition-colors">
+                    {f.q}
+                  </span>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                      isOpen ? "rotate-180 text-primary-glow" : ""
+                    }`}
+                  />
+                </button>
+                <div
+                  className="overflow-hidden transition-[max-height,opacity] duration-500 ease-out"
+                  style={{
+                    maxHeight: isOpen ? 320 : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                >
+                  <p className="pb-6 pr-10 text-muted-foreground leading-relaxed">{f.a}</p>
                 </div>
               </Reveal>
             );
@@ -336,32 +315,33 @@ export function FaqSection() {
 
 export function FinalCta() {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
-      <div className="container-zerek relative">
+    <section className="relative py-28 sm:py-36">
+      <div className="container-zerek">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-border/60 bg-gradient-to-br from-primary/20 via-surface to-background p-12 sm:p-20 text-center">
-            <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[50rem] rounded-full bg-primary/40 blur-[140px] opacity-60 animate-pulse" aria-hidden />
-            <div className="absolute -bottom-20 left-1/4 h-60 w-60 rounded-full bg-primary-glow/20 blur-[100px]" aria-hidden />
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/15 via-surface to-background p-10 sm:p-16 text-center">
+            {/* glow */}
+            <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-72 w-[40rem] rounded-full bg-primary/30 blur-[120px] opacity-70" aria-hidden />
             <div className="relative">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.05]">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight max-w-3xl mx-auto leading-[1.05]">
                 Pronto pra sua empresa{" "}
                 <span className="text-gradient">rodar no automático?</span>
               </h2>
-              <p className="mt-7 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Agende um diagnóstico gratuito de 30 minutos. Mostramos onde a automação vai gerar mais resultado pra você.
+              <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
+                Agende um diagnóstico gratuito de 30 minutos. Mostramos onde a automação vai gerar
+                mais resultado pra você.
               </p>
-              <div className="mt-12 flex justify-center">
+              <div className="mt-10 flex justify-center">
                 <a
                   href={WHATSAPP}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-5 text-lg font-bold text-primary-foreground shadow-[0_0_60px_oklch(0.62_0.2_260/0.6)] hover:shadow-[0_0_80px_oklch(0.62_0.2_260/0.8)] hover:bg-primary/90 hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground shadow-[0_0_50px_oklch(0.62_0.2_260/0.6)] hover:shadow-[0_0_70px_oklch(0.62_0.2_260/0.8)] hover:bg-primary/90 transition-all"
                 >
-                  <MessageCircle className="h-5 w-5 transition-transform group-hover:scale-110" />
+                  <MessageCircle className="h-5 w-5" />
                   Agendar diagnóstico
                 </a>
               </div>
-              <p className="mt-6 text-sm text-muted-foreground">Resposta em até 1 hora útil</p>
+              <p className="mt-5 text-xs text-muted-foreground">Resposta em até 1 hora útil</p>
             </div>
           </div>
         </Reveal>
@@ -374,57 +354,53 @@ export function FinalCta() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 bg-[oklch(0.12_0.02_265)] relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="container-zerek py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+    <footer className="border-t border-border bg-[oklch(0.13_0.025_265)]">
+      <div className="container-zerek py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary/30 to-primary/10 ring-1 ring-primary/40 text-primary-glow text-sm font-bold">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/15 ring-1 ring-primary/40 text-primary-glow text-sm font-bold">
               Z
             </span>
-            <span className="text-lg font-bold tracking-tight">
+            <span className="text-base font-semibold tracking-tight">
               Zerek<span className="text-primary-glow">.ai</span>
             </span>
           </div>
-          <p className="mt-5 text-sm text-muted-foreground max-w-xs leading-relaxed">
-            Automação e soluções digitais com IA pra empresas que querem crescer sem limites.
+          <p className="mt-4 text-sm text-muted-foreground max-w-xs leading-relaxed">
+            Automação e soluções digitais com IA pra empresas que querem crescer.
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-bold mb-5 text-foreground">Navegação</h4>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li><a href="#solucoes" className="hover:text-primary-glow transition-colors duration-200">Soluções</a></li>
-            <li><a href="#para-quem" className="hover:text-primary-glow transition-colors duration-200">Para quem é</a></li>
-            <li><a href="#como-funciona" className="hover:text-primary-glow transition-colors duration-200">Como funciona</a></li>
-            <li><a href="#faq" className="hover:text-primary-glow transition-colors duration-200">FAQ</a></li>
+          <h4 className="text-sm font-semibold mb-4">Navegação</h4>
+          <ul className="space-y-2.5 text-sm text-muted-foreground">
+            <li><a href="#solucoes" className="hover:text-foreground transition-colors">Soluções</a></li>
+            <li><a href="#para-quem" className="hover:text-foreground transition-colors">Para quem é</a></li>
+            <li><a href="#como-funciona" className="hover:text-foreground transition-colors">Como funciona</a></li>
+            <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-bold mb-5 text-foreground">Contato</h4>
-          <ul className="space-y-3 text-sm text-muted-foreground">
+          <h4 className="text-sm font-semibold mb-4">Contato</h4>
+          <ul className="space-y-2.5 text-sm text-muted-foreground">
             <li>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hover:text-primary-glow transition-colors duration-200">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors">
                 WhatsApp
               </a>
             </li>
             <li>
-              <a href="mailto:contato@zerek.ai" className="hover:text-primary-glow transition-colors duration-200">
+              <a href="mailto:contato@zerek.ai" className="hover:text-foreground transition-colors">
                 contato@zerek.ai
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow/60" />
-              Joinville, SC — Brasil
-            </li>
+            <li>Joinville, SC — Brasil</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-border/40">
-        <div className="container-zerek py-7 text-xs text-muted-foreground flex flex-col sm:flex-row gap-3 justify-between items-center">
+      <div className="border-t border-border">
+        <div className="container-zerek py-6 text-xs text-muted-foreground flex flex-col sm:flex-row gap-3 justify-between">
           <span>© 2026 Zerek.ai — Todos os direitos reservados</span>
-          <span>Feito em Joinville 🇧🇷</span>
+          <span>Feito em Joinville · 🇧🇷</span>
         </div>
       </div>
     </footer>
