@@ -39,41 +39,41 @@ const solutions = [
     icon: Zap,
     title: "Automação",
     desc: "Fluxos automáticos de captação, follow-up, pós-venda e reativação — rodando 24h sem intervenção.",
-    gradient: "from-violet-500 to-purple-400",
-    glow: "0 0 40px rgba(139,92,246,0.25)",
-    border: "rgba(139,92,246,0.4)",
+    gradient: "from-cyan-500 to-blue-400",
+    glow: "0 0 40px rgba(6,182,212,0.25)",
+    border: "rgba(6,182,212,0.4)",
   },
   {
     icon: BarChart3,
     title: "Dashboards",
     desc: "Painéis visuais em tempo real com métricas de vendas, atendimento e performance do negócio.",
-    gradient: "from-amber-500 to-orange-400",
-    glow: "0 0 40px rgba(245,158,11,0.25)",
-    border: "rgba(245,158,11,0.4)",
+    gradient: "from-blue-600 to-indigo-400",
+    glow: "0 0 40px rgba(37,99,235,0.25)",
+    border: "rgba(37,99,235,0.4)",
   },
   {
     icon: LayoutDashboard,
     title: "CRM Sob Medida",
     desc: "Pipeline de vendas, gestão de clientes e histórico de interações — integrado e automatizado.",
-    gradient: "from-emerald-500 to-teal-400",
-    glow: "0 0 40px rgba(16,185,129,0.25)",
-    border: "rgba(16,185,129,0.4)",
+    gradient: "from-indigo-500 to-blue-400",
+    glow: "0 0 40px rgba(99,102,241,0.25)",
+    border: "rgba(99,102,241,0.4)",
   },
   {
     icon: Globe,
     title: "Sites que Convertem",
     desc: "Landing pages e sites institucionais rápidos, otimizados e conectados às suas automações.",
-    gradient: "from-rose-500 to-pink-400",
-    glow: "0 0 40px rgba(244,63,94,0.25)",
-    border: "rgba(244,63,94,0.4)",
+    gradient: "from-blue-400 to-cyan-500",
+    glow: "0 0 40px rgba(96,165,250,0.25)",
+    border: "rgba(96,165,250,0.4)",
   },
   {
     icon: Workflow,
     title: "Integração de Sistemas",
     desc: "Conecta CRM, ERP, planilhas e ferramentas. Tudo conversando entre si, sem digitação manual.",
-    gradient: "from-indigo-500 to-blue-400",
-    glow: "0 0 40px rgba(99,102,241,0.25)",
-    border: "rgba(99,102,241,0.4)",
+    gradient: "from-blue-500 to-cyan-400",
+    glow: "0 0 40px rgba(59,130,246,0.25)",
+    border: "rgba(59,130,246,0.4)",
   },
 ];
 
@@ -126,9 +126,86 @@ function SolutionCard({
   );
 }
 
+/* ─────────────────────────────────────────────
+   HERO → SOLUTIONS TRANSITION
+───────────────────────────────────────────── */
+
+function HeroTransition() {
+  return (
+    <div className="relative h-32 sm:h-40 overflow-hidden pointer-events-none -mt-1" aria-hidden>
+      {/* fade from hero bg */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, oklch(0.16 0.03 265) 0%, transparent 100%)",
+        }}
+      />
+
+      {/* 3 animated beams flowing down */}
+      {[
+        { left: "20%", delay: "0s",   dur: "2.4s", opacity: 0.5 },
+        { left: "50%", delay: "0.8s", dur: "2.8s", opacity: 0.35 },
+        { left: "78%", delay: "0.4s", dur: "2.2s", opacity: 0.4 },
+      ].map((b, i) => (
+        <div
+          key={i}
+          className="absolute top-0 w-px"
+          style={{
+            left: b.left,
+            height: "100%",
+            background: `linear-gradient(to bottom, transparent, oklch(0.62 0.2 260 / ${b.opacity}), transparent)`,
+            animation: `beamDrop ${b.dur} ease-in-out infinite`,
+            animationDelay: b.delay,
+          }}
+        />
+      ))}
+
+      {/* floating dots */}
+      {[
+        { left: "15%", delay: "0.2s", size: 3 },
+        { left: "42%", delay: "1.1s", size: 2 },
+        { left: "65%", delay: "0.6s", size: 3 },
+        { left: "85%", delay: "1.5s", size: 2 },
+      ].map((d, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: d.left,
+            width: d.size,
+            height: d.size,
+            background: "oklch(0.62 0.2 260 / 0.7)",
+            boxShadow: "0 0 6px oklch(0.62 0.2 260 / 0.5)",
+            animation: `dotFall 3s ease-in infinite`,
+            animationDelay: d.delay,
+          }}
+        />
+      ))}
+
+      <style>{`
+        @keyframes beamDrop {
+          0%   { transform: translateY(-100%); opacity: 0; }
+          20%  { opacity: 1; }
+          80%  { opacity: 1; }
+          100% { transform: translateY(100%); opacity: 0; }
+        }
+        @keyframes dotFall {
+          0%   { transform: translateY(-8px); opacity: 0; }
+          20%  { opacity: 1; }
+          80%  { opacity: 0.8; }
+          100% { transform: translateY(140px); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function SolutionsSection() {
   return (
-    <section id="solucoes" className="relative py-28 sm:py-36 overflow-hidden">
+    <>
+      <HeroTransition />
+      <section id="solucoes" className="relative py-20 sm:py-28 overflow-hidden">
       {/* background glow */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[800px] rounded-full opacity-20"
@@ -160,6 +237,7 @@ export function SolutionsSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 
