@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center pt-24 sm:pt-28 overflow-hidden"
+      className="relative min-h-screen flex flex-col md:items-center pt-24 sm:pt-28 overflow-hidden"
     >
       {/* radial gradient bg */}
       <div className="absolute inset-0 bg-hero-radial" aria-hidden />
@@ -38,35 +38,29 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Spline robot — full bleed behind, right-aligned */}
-      <div className="absolute inset-0 z-[1]">
-        {/* Spline fills right side */}
-        <div className="absolute top-0 bottom-0 right-0 w-[90%] md:w-[65%]">
+      {/* Spline robot — desktop: absolute right side | mobile: hidden (shown below text) */}
+      <div className="hidden md:block absolute inset-0 z-[1]">
+        <div className="absolute top-0 bottom-0 right-0 w-[65%]">
           <SplineRobot />
         </div>
-        {/* Strong left-to-right blend covering full hero — eliminates seam */}
         <div
           className="absolute inset-0 z-10 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 45%, oklch(0.16 0.03 265 / 0.85) 55%, oklch(0.16 0.03 265 / 0.4) 70%, transparent 90%)",
+              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 30%, oklch(0.16 0.03 265 / 0.85) 45%, oklch(0.16 0.03 265 / 0.4) 60%, transparent 80%)",
           }}
         />
         <div
           className="absolute top-0 left-0 right-0 h-[18%] z-10 pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(to bottom, oklch(0.16 0.03 265), transparent)",
-          }}
+          style={{ backgroundImage: "linear-gradient(to bottom, oklch(0.16 0.03 265), transparent)" }}
         />
         <div
           className="absolute bottom-0 left-0 right-0 h-[22%] z-10 pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(to top, oklch(0.16 0.03 265), transparent)",
-          }}
+          style={{ backgroundImage: "linear-gradient(to top, oklch(0.16 0.03 265), transparent)" }}
         />
       </div>
 
-      <div className="container-zerek relative z-[2] py-16 -translate-y-14">
+      <div className="container-zerek relative z-[2] py-16 md:-translate-y-14">
         <div className="max-w-xl">
           <Reveal delay={80}>
             <h1 className="mt-7 text-[40px] sm:text-6xl lg:text-[68px] leading-[1.06] font-extrabold tracking-[-0.03em]">
@@ -119,6 +113,15 @@ export function Hero() {
               </div>
             </div>
           </Reveal>
+        </div>
+
+        {/* Robot — mobile only, below text */}
+        <div className="md:hidden mt-10 relative w-full h-[340px]">
+          <SplineRobot />
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[40%] pointer-events-none"
+            style={{ backgroundImage: "linear-gradient(to top, oklch(0.16 0.03 265), transparent)" }}
+          />
         </div>
       </div>
 
