@@ -15,7 +15,6 @@ const navLinks = [
   { id: "solucoes", label: "Soluções" },
   { id: "para-quem", label: "Para quem é" },
   { id: "como-funciona", label: "Como funciona" },
-  { id: "faq", label: "FAQ" },
 ];
 
 export function Header() {

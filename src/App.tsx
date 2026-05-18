@@ -4,7 +4,6 @@ import {
   SolutionsSection,
   AudienceSection,
   HowItWorksSection,
-  FaqSection,
   FinalCta,
   Footer,
 } from "@/components/zerek/sections";
@@ -18,7 +17,6 @@ export function App() {
         <SolutionsSection />
         <AudienceSection />
         <HowItWorksSection />
-        <FaqSection />
         <FinalCta />
       </main>
       <Footer />
