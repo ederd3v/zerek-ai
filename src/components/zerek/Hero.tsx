@@ -43,17 +43,17 @@ export function Hero() {
 
       {/* ── ROBÔ — visível em todas as telas ── */}
       <div className="absolute inset-0 z-[1]">
-        {/* robô ocupa lado direito — mais largo no mobile para aparecer bem */}
-        <div className="absolute top-0 bottom-0 right-0 w-full md:w-[65%]">
+        {/* robô — mesmo tamanho em mobile e desktop, ancorado à direita */}
+        <div className="absolute top-0 bottom-0 right-0 w-[65%]">
           <SplineRobot />
         </div>
 
-        {/* gradiente mobile — cobre ~65% do lado esquerdo para proteger o texto */}
+        {/* gradiente mobile — proteção mais leve, robô aparece mais à direita */}
         <div
           className="md:hidden absolute inset-0 z-10 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 55%, oklch(0.16 0.03 265 / 0.90) 68%, oklch(0.16 0.03 265 / 0.50) 80%, transparent 100%)",
+              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 40%, oklch(0.16 0.03 265 / 0.80) 55%, oklch(0.16 0.03 265 / 0.30) 72%, transparent 92%)",
           }}
         />
 
@@ -81,19 +81,6 @@ export function Hero() {
       {/* ── CONTEÚDO ── */}
       <div className="container-zerek relative z-[2] py-16 -translate-y-10 md:-translate-y-14">
         <div className="max-w-[520px]">
-
-          {/* badge */}
-          <Reveal delay={0}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/25 mb-6">
-              <span className="relative flex h-1.5 w-1.5 shrink-0">
-                <span className="absolute inset-0 animate-ping rounded-full bg-primary-glow opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary-glow" />
-              </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-glow">
-                Soluções de IA sob medida
-              </span>
-            </div>
-          </Reveal>
 
           {/* headline */}
           <Reveal delay={80}>
