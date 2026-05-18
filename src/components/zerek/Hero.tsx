@@ -15,7 +15,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-hero-radial" aria-hidden />
       {/* robot area ambient glow — lighter blue circle behind where the robot sits */}
       <div
-        className="hidden md:block absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
@@ -39,9 +39,9 @@ export function Hero() {
       />
 
       {/* Spline robot — full bleed behind, right-aligned */}
-      <div className="hidden md:block absolute inset-0 z-[1]">
+      <div className="absolute inset-0 z-[1]">
         {/* Spline fills right side */}
-        <div className="absolute top-0 bottom-0 right-0 w-[65%]">
+        <div className="absolute top-0 bottom-0 right-0 w-[90%] md:w-[65%]">
           <SplineRobot />
         </div>
         {/* Strong left-to-right blend covering full hero — eliminates seam */}
@@ -49,7 +49,7 @@ export function Hero() {
           className="absolute inset-0 z-10 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 30%, oklch(0.16 0.03 265 / 0.85) 45%, oklch(0.16 0.03 265 / 0.4) 60%, transparent 80%)",
+              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 45%, oklch(0.16 0.03 265 / 0.85) 55%, oklch(0.16 0.03 265 / 0.4) 70%, transparent 90%)",
           }}
         />
         <div
