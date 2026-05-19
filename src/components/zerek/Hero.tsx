@@ -3,18 +3,18 @@ import { Constellation } from "./Constellation";
 import { SplineRobot } from "./SplineRobot";
 import { Reveal } from "./Reveal";
 
-const WHATSAPP = "https://api.whatsapp.com/send?phone=5547996904704&text=Oi%21+Acessei+o+site+da+Zerek.IA+e+desejo+algumas+informa%C3%A7%C3%B5es";
+const WHATSAPP = "https://api.whatsapp.com/send?phone=5547996904704&text=Oi%21+Acessei+o+site+da+Zerek.IA+e+desejo+algumas+informa%C3%A7%C3%B75es";
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden"
     >
       {/* bg base */}
       <div className="absolute inset-0 bg-hero-radial" aria-hidden />
 
-      {/* ambient glow — mais intenso e maior */}
+      {/* ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -23,8 +23,6 @@ export function Hero() {
             "radial-gradient(ellipse 80% 80% at 72% 52%, oklch(0.42 0.18 260 / 0.38) 0%, oklch(0.32 0.14 260 / 0.18) 45%, transparent 72%)",
         }}
       />
-
-      {/* segundo glow — anel externo suave */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
@@ -87,23 +85,16 @@ export function Hero() {
         />
       </div>
 
-      {/* ── CONTEÚDO — sem translate negativo ── */}
+      {/* ── CONTEÚDO ── */}
       <div className="container-zerek relative z-[2] w-full">
-        <div className="max-w-[500px] xl:max-w-[560px]">
+        <div className="max-w-[520px] xl:max-w-[580px]">
 
-          {/* headline — escala proporcional por breakpoint */}
+          {/* headline — clamp escala suavemente com a largura da tela */}
           <Reveal delay={80}>
-            <h1 className="
-              text-[38px]
-              sm:text-[48px]
-              md:text-[54px]
-              lg:text-[62px]
-              xl:text-[72px]
-              leading-[1.04]
-              font-extrabold
-              tracking-[-0.03em]
-              antialiased
-            ">
+            <h1
+              className="leading-[1.04] font-extrabold tracking-[-0.03em] antialiased"
+              style={{ fontSize: "clamp(36px, 4vw, 72px)" }}
+            >
               <span className="block text-foreground">Atende no</span>
               <span className="block text-foreground">automático.</span>
               <span className="block text-gradient mt-1">Cresce com IA.</span>
@@ -112,7 +103,10 @@ export function Hero() {
 
           {/* subtítulo */}
           <Reveal delay={160}>
-            <p className="mt-5 text-[14px] sm:text-[15px] md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[420px]">
+            <p
+              className="mt-5 text-muted-foreground leading-relaxed max-w-[420px]"
+              style={{ fontSize: "clamp(14px, 1.1vw, 18px)" }}
+            >
               Agentes de IA, site e CRM sob medida pro seu negócio.
               Captação, recuperação de vendas e pós-venda — tudo integrado.
             </p>
@@ -120,19 +114,19 @@ export function Hero() {
 
           {/* CTAs */}
           <Reveal delay={240}>
-            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_oklch(0.62_0.2_260/0.55)] hover:shadow-[0_0_60px_oklch(0.62_0.2_260/0.75)] hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_oklch(0.62_0.2_260/0.55)] hover:shadow-[0_0_60px_oklch(0.62_0.2_260/0.75)] hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <MessageCircle className="h-4 w-4" />
                 Agendar diagnóstico
               </a>
               <a
                 href="#solucoes"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-6 py-3.5 text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-7 py-4 text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Ver soluções
                 <ArrowRight className="h-4 w-4" />
@@ -142,7 +136,7 @@ export function Hero() {
 
           {/* trust badges — sempre visíveis */}
           <Reveal delay={320}>
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2.5">
               {[
                 "Sem fidelidade",
                 "Implementação em 7 dias",
