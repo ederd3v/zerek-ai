@@ -107,7 +107,7 @@ export function Hero() {
               className="mt-5 text-muted-foreground leading-relaxed max-w-[420px]"
               style={{ fontSize: "clamp(14px, 1.1vw, 18px)" }}
             >
-              Agentes de IA, site e CRM sob medida pro seu negócio.
+              Agentes de IA, Sites e CRM sob medida pro seu negócio.
               Captação, recuperação de vendas e pós-venda — tudo integrado.
             </p>
           </Reveal>

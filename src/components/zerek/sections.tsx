@@ -142,13 +142,15 @@ function HeroTransition() {
         }}
       />
 
-      {/* 5 animated beams — distribuídos por todo o horizonte */}
+      {/* 7 beams — cobrindo 0% a 100% da tela */}
       {[
-        { left: "10%", delay: "0s",   dur: "2.4s", opacity: 0.45 },
-        { left: "30%", delay: "0.6s", dur: "2.7s", opacity: 0.35 },
-        { left: "50%", delay: "1.1s", dur: "2.8s", opacity: 0.5 },
-        { left: "70%", delay: "0.3s", dur: "2.2s", opacity: 0.35 },
-        { left: "90%", delay: "0.9s", dur: "2.5s", opacity: 0.4 },
+        { left: "2%",  delay: "0s",   dur: "2.3s", opacity: 0.4  },
+        { left: "18%", delay: "0.5s", dur: "2.6s", opacity: 0.45 },
+        { left: "35%", delay: "1.0s", dur: "2.4s", opacity: 0.35 },
+        { left: "50%", delay: "0.2s", dur: "2.8s", opacity: 0.5  },
+        { left: "65%", delay: "0.8s", dur: "2.2s", opacity: 0.35 },
+        { left: "82%", delay: "0.4s", dur: "2.5s", opacity: 0.45 },
+        { left: "98%", delay: "1.2s", dur: "2.3s", opacity: 0.4  },
       ].map((b, i) => (
         <div
           key={i}
