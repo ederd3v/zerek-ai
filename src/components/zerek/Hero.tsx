@@ -9,18 +9,28 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center pt-24 sm:pt-28 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden"
     >
       {/* bg base */}
       <div className="absolute inset-0 bg-hero-radial" aria-hidden />
 
-      {/* ambient glow — acompanha o robô em todas as telas */}
+      {/* ambient glow — mais intenso e maior */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 70% 70% at 72% 52%, oklch(0.38 0.14 260 / 0.22) 0%, oklch(0.28 0.10 260 / 0.10) 50%, transparent 75%)",
+            "radial-gradient(ellipse 80% 80% at 72% 52%, oklch(0.42 0.18 260 / 0.38) 0%, oklch(0.32 0.14 260 / 0.18) 45%, transparent 72%)",
+        }}
+      />
+
+      {/* segundo glow — anel externo suave */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 100% 90% at 75% 52%, oklch(0.55 0.20 260 / 0.10) 0%, transparent 60%)",
         }}
       />
 
@@ -41,14 +51,13 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* ── ROBÔ — visível em todas as telas ── */}
+      {/* ── ROBÔ ── */}
       <div className="absolute inset-0 z-[1]">
-        {/* robô — mesmo tamanho em mobile e desktop, ancorado à direita */}
         <div className="absolute top-0 bottom-0 right-0 w-[65%]">
           <SplineRobot />
         </div>
 
-        {/* gradiente mobile — proteção mais leve, robô aparece mais à direita */}
+        {/* gradiente mobile */}
         <div
           className="md:hidden absolute inset-0 z-10 pointer-events-none"
           style={{
@@ -57,12 +66,12 @@ export function Hero() {
           }}
         />
 
-        {/* gradiente desktop — original */}
+        {/* gradiente desktop */}
         <div
           className="hidden md:block absolute inset-0 z-10 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 30%, oklch(0.16 0.03 265 / 0.85) 45%, oklch(0.16 0.03 265 / 0.4) 60%, transparent 80%)",
+              "linear-gradient(90deg, oklch(0.16 0.03 265) 0%, oklch(0.16 0.03 265) 28%, oklch(0.16 0.03 265 / 0.85) 42%, oklch(0.16 0.03 265 / 0.35) 58%, transparent 78%)",
           }}
         />
 
@@ -73,18 +82,28 @@ export function Hero() {
         />
         {/* fade base */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-[22%] z-10 pointer-events-none"
+          className="absolute bottom-0 left-0 right-0 h-[20%] z-10 pointer-events-none"
           style={{ backgroundImage: "linear-gradient(to top, oklch(0.16 0.03 265), transparent)" }}
         />
       </div>
 
-      {/* ── CONTEÚDO ── */}
-      <div className="container-zerek relative z-[2] py-16 -translate-y-10 md:-translate-y-14">
-        <div className="max-w-[520px]">
+      {/* ── CONTEÚDO — sem translate negativo ── */}
+      <div className="container-zerek relative z-[2] w-full">
+        <div className="max-w-[500px] xl:max-w-[560px]">
 
-          {/* headline */}
+          {/* headline — escala proporcional por breakpoint */}
           <Reveal delay={80}>
-            <h1 className="text-[42px] sm:text-6xl lg:text-[68px] leading-[1.04] font-extrabold tracking-[-0.03em] antialiased">
+            <h1 className="
+              text-[38px]
+              sm:text-[48px]
+              md:text-[54px]
+              lg:text-[62px]
+              xl:text-[72px]
+              leading-[1.04]
+              font-extrabold
+              tracking-[-0.03em]
+              antialiased
+            ">
               <span className="block text-foreground">Atende no</span>
               <span className="block text-foreground">automático.</span>
               <span className="block text-gradient mt-1">Cresce com IA.</span>
@@ -93,7 +112,7 @@ export function Hero() {
 
           {/* subtítulo */}
           <Reveal delay={160}>
-            <p className="mt-5 text-[15px] sm:text-lg text-muted-foreground leading-relaxed max-w-[400px]">
+            <p className="mt-5 text-[14px] sm:text-[15px] md:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-[420px]">
               Agentes de IA, site e CRM sob medida pro seu negócio.
               Captação, recuperação de vendas e pós-venda — tudo integrado.
             </p>
@@ -101,19 +120,19 @@ export function Hero() {
 
           {/* CTAs */}
           <Reveal delay={240}>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
               <a
                 href={WHATSAPP}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_oklch(0.62_0.2_260/0.55)] hover:shadow-[0_0_60px_oklch(0.62_0.2_260/0.75)] hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_oklch(0.62_0.2_260/0.55)] hover:shadow-[0_0_60px_oklch(0.62_0.2_260/0.75)] hover:bg-primary/90 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <MessageCircle className="h-4 w-4" />
                 Agendar diagnóstico
               </a>
               <a
                 href="#solucoes"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-7 py-4 text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-6 py-3.5 text-sm font-semibold text-foreground hover:border-primary/50 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Ver soluções
                 <ArrowRight className="h-4 w-4" />
@@ -121,9 +140,9 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* trust badges */}
+          {/* trust badges — sempre visíveis */}
           <Reveal delay={320}>
-            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2.5">
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
               {[
                 "Sem fidelidade",
                 "Implementação em 7 dias",
