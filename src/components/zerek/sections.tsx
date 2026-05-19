@@ -653,7 +653,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-4">Navegação</h4>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            [
+            {[
               { href: "#solucoes", label: "Soluções" },
               { href: "#para-quem", label: "Para quem é" },
             ].map((l) => (
