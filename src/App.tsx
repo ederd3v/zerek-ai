@@ -3,7 +3,6 @@ import { Hero } from "@/components/zerek/Hero";
 import {
   SolutionsSection,
   AudienceSection,
-  HowItWorksSection,
   FinalCta,
   Footer,
 } from "@/components/zerek/sections";
@@ -16,7 +15,6 @@ export function App() {
         <Hero />
         <SolutionsSection />
         <AudienceSection />
-        <HowItWorksSection />
         <FinalCta />
       </main>
       <Footer />

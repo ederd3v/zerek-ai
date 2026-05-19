@@ -93,7 +93,7 @@ function SolutionCard({
       rel="noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative block rounded-2xl border bg-white/[0.03] backdrop-blur-sm p-7 transition-all duration-300"
+      className="group relative flex flex-col h-full rounded-2xl border bg-white/[0.03] backdrop-blur-sm p-7 transition-all duration-300"
       style={{
         borderColor: hovered ? border : "rgba(255,255,255,0.08)",
         boxShadow: hovered ? glow : "none",
@@ -116,7 +116,7 @@ function SolutionCard({
       </div>
 
       <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
-      <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+      <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed flex-1">{desc}</p>
 
       <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary-glow">
         Saiba mais
@@ -142,11 +142,13 @@ function HeroTransition() {
         }}
       />
 
-      {/* 3 animated beams flowing down */}
+      {/* 5 animated beams — distribuídos por todo o horizonte */}
       {[
-        { left: "20%", delay: "0s",   dur: "2.4s", opacity: 0.5 },
-        { left: "50%", delay: "0.8s", dur: "2.8s", opacity: 0.35 },
-        { left: "78%", delay: "0.4s", dur: "2.2s", opacity: 0.4 },
+        { left: "10%", delay: "0s",   dur: "2.4s", opacity: 0.45 },
+        { left: "30%", delay: "0.6s", dur: "2.7s", opacity: 0.35 },
+        { left: "50%", delay: "1.1s", dur: "2.8s", opacity: 0.5 },
+        { left: "70%", delay: "0.3s", dur: "2.2s", opacity: 0.35 },
+        { left: "90%", delay: "0.9s", dur: "2.5s", opacity: 0.4 },
       ].map((b, i) => (
         <div
           key={i}
@@ -228,9 +230,9 @@ export function SolutionsSection() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
           {solutions.map((s, i) => (
-            <Reveal key={s.title} delay={i * 70}>
+            <Reveal key={s.title} delay={i * 70} className="h-full">
               <SolutionCard {...s} />
             </Reveal>
           ))}
@@ -286,22 +288,7 @@ export function AudienceSection() {
           </div>
         </Reveal>
 
-        {/* stats row */}
-        <Reveal delay={80}>
-          <div className="mt-12 grid grid-cols-3 gap-4 max-w-xl mx-auto">
-            {stats.map((s) => (
-              <div
-                key={s.label}
-                className="rounded-2xl border border-border bg-white/[0.03] p-4 text-center"
-              >
-                <p className="text-2xl sm:text-3xl font-extrabold text-gradient">{s.value}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-3">
           {audiences.map((a, i) => (
             <Reveal key={a.label} delay={i * 55}>
               <div className="group flex items-center gap-3 rounded-xl border border-border bg-background/60 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-white/[0.04] hover:-translate-y-0.5">
@@ -551,78 +538,88 @@ function FloatingOrb({ className, style }: { className?: string; style?: React.C
 
 export function FinalCta() {
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden">
-      <div className="container-zerek">
+    <section className="relative py-24 sm:py-32 overflow-hidden">
+      <div className="container-zerek max-w-3xl">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-surface to-background p-10 sm:p-16 text-center">
-            {/* animated orbs */}
+          <div
+            className="relative overflow-hidden rounded-3xl p-10 sm:p-14 text-center"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.18 0.04 265 / 0.95) 0%, oklch(0.14 0.03 265 / 0.98) 100%)",
+              border: "1px solid oklch(0.62 0.2 260 / 0.25)",
+              boxShadow: "0 0 80px oklch(0.62 0.2 260 / 0.18), inset 0 1px 0 oklch(1 0 0 / 0.05)",
+            }}
+          >
+            {/* orbs */}
             <FloatingOrb
-              className="h-72 w-72 -top-20 left-1/4 -translate-x-1/2 animate-pulse"
-              style={{ background: "radial-gradient(circle, oklch(0.62 0.2 260 / 0.25), transparent 70%)" }}
+              className="h-64 w-64 -top-16 -left-16 animate-pulse"
+              style={{ background: "radial-gradient(circle, oklch(0.62 0.2 260 / 0.20), transparent 70%)", animationDuration: "3s" }}
             />
             <FloatingOrb
-              className="h-48 w-48 bottom-0 right-10 translate-y-1/2 animate-pulse"
-              style={{
-                background: "radial-gradient(circle, oklch(0.72 0.18 200 / 0.2), transparent 70%)",
-                animationDelay: "1s",
-              }}
-            />
-            <FloatingOrb
-              className="h-32 w-32 top-1/2 right-1/4 -translate-y-1/2 animate-pulse"
-              style={{
-                background: "radial-gradient(circle, oklch(0.68 0.16 300 / 0.15), transparent 70%)",
-                animationDelay: "0.5s",
-              }}
+              className="h-48 w-48 -bottom-12 -right-12 animate-pulse"
+              style={{ background: "radial-gradient(circle, oklch(0.55 0.22 220 / 0.18), transparent 70%)", animationDelay: "1.5s", animationDuration: "3.5s" }}
             />
 
-            {/* top shimmer line */}
-            <div
-              className="absolute inset-x-0 top-0 h-px"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, oklch(0.62 0.2 260 / 0.6) 30%, oklch(0.72 0.18 200 / 0.6) 70%, transparent)",
-              }}
-            />
+            {/* top shimmer */}
+            <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent, oklch(0.62 0.2 260 / 0.7) 40%, oklch(0.72 0.18 200 / 0.7) 60%, transparent)" }} />
 
             <div className="relative">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary-glow mb-5">
-                Vamos começar?
-              </p>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-3xl mx-auto leading-[1.05]">
-                Pronto pra sua empresa{" "}
-                <span className="text-gradient">rodar no automático?</span>
-              </h2>
-              <p className="mt-5 text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                Diagnóstico gratuito de 30 minutos. Mostramos onde a automação
-                vai gerar mais resultado pra você.
-              </p>
-
-              {/* checklist */}
-              <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2">
-                {["Sem fidelidade", "Implementação em 7 dias", "Suporte humano"].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
-                    {item}
-                  </div>
-                ))}
+              {/* pill badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="text-xs font-medium text-slate-300">Comece hoje</span>
               </div>
 
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight max-w-2xl mx-auto leading-[1.1]">
+                Pronto para deixar a{" "}
+                <span className="text-gradient">IA trabalhar</span>
+                {" "}pra você?
+              </h2>
+              <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
+                Fale com a gente no WhatsApp. Em poucos minutos te mostramos como a Zerek encaixa no seu negócio.
+              </p>
+
+              {/* botões */}
+              <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a
                   href={WHATSAPP}
                   target="_blank"
                   rel="noreferrer"
-                  className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_0_50px_oklch(0.62_0.2_260/0.55)] hover:shadow-[0_0_70px_oklch(0.62_0.2_260/0.8)] hover:-translate-y-0.5 transition-all duration-300"
+                  className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full px-7 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
+                  style={{
+                    background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                    boxShadow: "0 0 30px rgba(34,197,94,0.35)",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 50px rgba(34,197,94,0.55)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 0 30px rgba(34,197,94,0.35)")}
                 >
-                  {/* shimmer sweep */}
                   <span className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]" />
                   <MessageCircle className="h-5 w-5 relative" />
-                  <span className="relative">Agendar diagnóstico</span>
+                  <span className="relative">Falar no WhatsApp</span>
+                  <ArrowRight className="h-4 w-4 relative transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+
+                <a
+                  href="https://instagram.com/grupozerek"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-7 py-4 text-base font-semibold text-foreground hover:border-white/30 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  Instagram
                 </a>
               </div>
-              <p className="mt-4 text-xs text-muted-foreground">
-                Resposta em até 1 hora útil
-              </p>
+
+              {/* trust */}
+              <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2">
+                {["Sem fidelidade", "Implementação em 7 dias", "Suporte humano"].map((item) => (
+                  <div key={item} className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>
@@ -656,11 +653,9 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-4">Navegação</h4>
           <ul className="space-y-2.5 text-sm text-muted-foreground">
-            {[
+            [
               { href: "#solucoes", label: "Soluções" },
               { href: "#para-quem", label: "Para quem é" },
-              { href: "#como-funciona", label: "Como funciona" },
-              { href: "#faq", label: "FAQ" },
             ].map((l) => (
               <li key={l.href}>
                 <a
